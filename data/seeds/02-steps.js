@@ -1,5 +1,4 @@
 exports.seed = async function(knex) {
-  // Deletes ALL existing entries
   await knex('steps').insert([
     { step_number: 1, instruction: 'testing my seeds', recipe_id: 1 },
     { step_number: 2, instruction: 'testing my seeds', recipe_id: 2 },
