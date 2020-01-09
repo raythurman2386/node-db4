@@ -4,12 +4,11 @@ const Recipes = require('../../data/helpers/recipe.models');
 recipeRouter
   // all recipes
   .get('/recipes', async (req, res, next) => {
-    // TODO
     try {
       const recipes = await Recipes.getRecipes();
       return res.status(200).json(recipes);
     } catch (error) {
-      res.status(500).json({ message: 'Something went wrong' });
+      next(error);
     }
   })
   // single recipe shopping list
