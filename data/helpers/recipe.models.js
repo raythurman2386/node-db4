@@ -1,6 +1,8 @@
 const db = require('../db-config');
 
-function getRecipes() {}
+function getRecipes() {
+  return db('recipes').select();
+}
 
 function getShoppingList(recipe_id) {}
 
