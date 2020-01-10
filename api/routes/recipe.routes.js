@@ -54,6 +54,19 @@ recipeRouter
     } catch (error) {
       next(error);
     }
+  })
+  .post('/recipes/:id/instructions', async (req, res, next) => {
+    try {
+      const step = {
+        step_number: req.body.step_number,
+        instruction: req.body.instruction,
+        recipe_id: req.params.id,
+      };
+      const newStep = await Recipes.addRecipeStep(step);
+      return res.status(200).json(newStep);
+    } catch (error) {
+      next(error);
+    }
   });
 
 module.exports = recipeRouter;

@@ -29,9 +29,12 @@ function getInstructions(recipe_id) {
 // Post/Add
 async function addRecipe(recipe) {
   const [id] = await db('recipes').insert(recipe);
-  return await db('recipes')
-    .select()
-    .where({ id });
+  return await getRecipeById(id);
+}
+
+async function addRecipeStep(step) {
+  const [id] = await db('steps').insert(step);
+  return getInstructions(step.recipe_id);
 }
 
 module.exports = {
@@ -40,4 +43,5 @@ module.exports = {
   getShoppingList,
   getInstructions,
   addRecipe,
+  addRecipeStep,
 };
