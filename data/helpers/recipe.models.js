@@ -1,5 +1,6 @@
 const db = require('../db-config');
 
+// Get requests
 function getRecipes() {
   return db('recipes').select();
 }
@@ -25,9 +26,18 @@ function getInstructions(recipe_id) {
     .orderBy('S.step_number');
 }
 
+// Post/Add
+async function addRecipe(recipe) {
+  const [id] = await db('recipes').insert(recipe);
+  return await db('recipes')
+    .select()
+    .where({ id });
+}
+
 module.exports = {
   getRecipes,
   getRecipeById,
   getShoppingList,
   getInstructions,
+  addRecipe,
 };

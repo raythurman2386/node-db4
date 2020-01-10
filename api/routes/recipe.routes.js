@@ -43,8 +43,17 @@ recipeRouter
     }
   })
   // all recipes using the same single ingredient
-  .get('/ingredients/:id/recipes', async (req, res, next) => {
-    // TODO
+  // .get('/ingredients/:id/recipes', async (req, res, next) => {
+  //   // TODO
+  // })
+  // Add a recipe
+  .post('/recipes', async (req, res, next) => {
+    try {
+      const recipe = await Recipes.addRecipe(req.body);
+      return res.status(200).json(recipe);
+    } catch (error) {
+      next(error);
+    }
   });
 
 module.exports = recipeRouter;

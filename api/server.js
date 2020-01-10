@@ -15,6 +15,7 @@ server.use((req, res, next) => {
 });
 
 server.use((err, req, res, next) => {
+  console.log(err);
   return res.json({ message: 'Something has went terribly wrong!' });
 });
 
