@@ -11,12 +11,22 @@ recipeRouter
       next(error);
     }
   })
+  // Get single Recipe
+  .get('/recipes/:id', async (req, res, next) => {
+    try {
+      const recipe = await Recipes.getRecipeById(req.params.id);
+      return res.status(200).json(recipe);
+    } catch (error) {
+      next(error);
+    }
+  })
   // single recipe shopping list
   .get('/recipes/:id/shoppingList', async (req, res, next) => {
     // TODO
     try {
+      const [recipe] = await Recipes.getRecipeById(req.params.id);
       const list = await Recipes.getShoppingList(req.params.id);
-      return res.status(200).json(list);
+      return res.status(200).json({ recipe, list });
     } catch (error) {
       next(error);
     }
@@ -25,8 +35,9 @@ recipeRouter
   .get('/recipes/:id/instructions', async (req, res, next) => {
     // TODO
     try {
+      const [recipe] = await Recipes.getRecipeById(req.params.id);
       const list = await Recipes.getInstructions(req.params.id);
-      return res.status(200).json(list);
+      return res.status(200).json({ recipe, list });
     } catch (error) {
       next(error);
     }
