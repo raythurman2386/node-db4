@@ -24,6 +24,12 @@ recipeRouter
   // instructions for single recipe
   .get('/recipes/:id/instructions', async (req, res, next) => {
     // TODO
+    try {
+      const list = await Recipes.getInstructions(req.params.id);
+      return res.status(200).json(list);
+    } catch (error) {
+      next(error);
+    }
   })
   // all recipes using the same single ingredient
   .get('/ingredients/:id/recipes', async (req, res, next) => {
