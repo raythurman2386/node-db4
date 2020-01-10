@@ -37,6 +37,14 @@ async function addRecipeStep(step) {
   return getInstructions(step.recipe_id);
 }
 
+// Delete recipe
+async function deleteRecipe(recipe_id) {
+  const deleted = await getRecipeById(recipe_id);
+  return await db('recipes')
+    .where({ id: recipe_id })
+    .del();
+}
+
 module.exports = {
   getRecipes,
   getRecipeById,
@@ -44,4 +52,5 @@ module.exports = {
   getInstructions,
   addRecipe,
   addRecipeStep,
+  deleteRecipe,
 };

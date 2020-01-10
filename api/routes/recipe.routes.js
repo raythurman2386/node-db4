@@ -67,6 +67,14 @@ recipeRouter
     } catch (error) {
       next(error);
     }
+  })
+  .delete('/recipes/:id', async (req, res, next) => {
+    try {
+      const deleted = await Recipes.deleteRecipe(req.params.id);
+      return res.status(200).json(deleted);
+    } catch (error) {
+      next(error);
+    }
   });
 
 module.exports = recipeRouter;
