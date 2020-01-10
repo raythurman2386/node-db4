@@ -16,7 +16,7 @@ recipeRouter
     // TODO
     try {
       const list = await Recipes.getShoppingList(req.params.id);
-      return res.status(200).json(recipes);
+      return res.status(200).json(list);
     } catch (error) {
       next(error);
     }

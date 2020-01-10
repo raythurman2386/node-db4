@@ -15,7 +15,8 @@ function getInstructions(recipe_id) {
   return db('steps as S')
     .join('recipes as R', 'S.recipe_id', 'R.id')
     .select('S.step_number', 'S.instruction')
-    .where({ recipe_id: recipe_id });
+    .where({ recipe_id: recipe_id })
+    .orderBy('S.step_number');
 }
 
 module.exports = {
